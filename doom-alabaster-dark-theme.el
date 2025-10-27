@@ -1,4 +1,4 @@
-;;; doom-alabaster-theme.el --- A dark theme with little syntax highlighting -*- lexical-binding: t; no-byte-compile: t -*-
+;;; doom-alabaster-dark-theme.el --- A dark theme with little syntax highlighting -*- lexical-binding: t; no-byte-compile: t -*-
 ;; Copyright (C) 2025 Eduardo Apolinario
 ;;
 ;; Author: Eduardo Apolinario <curupa@gmail.com>
@@ -19,7 +19,7 @@
 ;;; Code:
 (require 'doom-themes)
 
-(defun doom-alabaster--setopt (sym val)
+(defun doom-alabaster-dark--setopt (sym val)
   "Custom setter that sets SYM to VAL and reloads the theme."
   (set-default sym val)
   ;;`custom--inhibit-theme-enable' is set to nil by `enable-theme'
@@ -28,31 +28,31 @@
              (memq 'doom-alabaster custom-enabled-themes))
     (load-theme 'doom-alabaster :no-confirm)))
 
-(defgroup doom-alabaster-theme nil
+(defgroup doom-alabaster-dark-theme nil
   "Options for the `doom-alabaster' theme."
   :group 'doom-themes)
 
-(defcustom doom-alabaster-fainter-comments nil
+(defcustom doom-alabaster-dark-fainter-comments nil
   "If non-nil, comments will be highlighted is less vivid colors."
-  :group 'doom-alabaster-theme
+  :group 'doom-alabaster-dark-theme
   :type 'boolean)
 
-(make-obsolete-variable 'doom-alabaster-fainter-comments
-                        "Set doom-alabaster-style to `faint' instead."
+(make-obsolete-variable 'doom-alabaster-dark-fainter-comments
+                        "Set doom-alabaster-dark-style to `faint' instead."
                         "2024-10-08")
 
-(defcustom doom-alabaster-comment-style 'original
+(defcustom doom-alabaster-dark-comment-style 'original
   "Control style of comments.
 
 There are three styles to select from:
 1. `original': very visible comment highlighting
 2. `faint': a less vivid comment highlighting
 3. nil: no comment highlighting."
-  :group 'doom-alabaster-theme
+  :group 'doom-alabaster-dark-theme
   :type '(choice (const :tag "Original" original)
           (const :tag "faint" faint)
           (const :tag "nil" nil))
-  :set #'doom-alabaster--setopt)
+  :set #'doom-alabaster-dark--setopt)
 
 (def-doom-theme doom-alabaster
     "A dark theme with little highlighting"
@@ -97,10 +97,10 @@ There are three styles to select from:
    (selection      dark-blue)
    (builtin        fg)
    (comments       (cond
-                    ((or (eq doom-alabaster-comment-style 'faint)
-                         doom-alabaster-fainter-comments)
+                    ((or (eq doom-alabaster-dark-comment-style 'faint)
+                         doom-alabaster-dark-fainter-comments)
                      (doom-darken "#DFDF8E" 0.4))
-                    ((eq doom-alabaster-comment-style nil)
+                    ((eq doom-alabaster-dark-comment-style nil)
                      fg)
                     ;; 'original == default
                     (t "#DFDF8E")))
@@ -352,5 +352,5 @@ There are three styles to select from:
 (when (and (boundp 'custom-theme-load-path) load-file-name)
   (add-to-list 'custom-theme-load-path (file-name-directory load-file-name)))
 
-(provide 'doom-alabaster-theme)
-;;; doom-alabaster-theme.el ends here
+(provide 'doom-alabaster-dark-theme)
+;;; doom-alabaster-dark-theme.el ends here
