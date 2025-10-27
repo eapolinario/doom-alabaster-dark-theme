@@ -32,15 +32,6 @@
   "Options for the `doom-alabaster' theme."
   :group 'doom-themes)
 
-(defcustom doom-alabaster-dark-fainter-comments nil
-  "If non-nil, comments will be highlighted is less vivid colors."
-  :group 'doom-alabaster-dark-theme
-  :type 'boolean)
-
-(make-obsolete-variable 'doom-alabaster-dark-fainter-comments
-                        "Set doom-alabaster-dark-style to `faint' instead."
-                        "2024-10-08")
-
 (defcustom doom-alabaster-dark-comment-style 'original
   "Control style of comments.
 
@@ -97,8 +88,7 @@ There are three styles to select from:
    (selection      dark-blue)
    (builtin        fg)
    (comments       (cond
-                    ((or (eq doom-alabaster-dark-comment-style 'faint)
-                         doom-alabaster-dark-fainter-comments)
+                    ((eq doom-alabaster-dark-comment-style 'faint)
                      (doom-darken "#DFDF8E" 0.4))
                     ((eq doom-alabaster-dark-comment-style nil)
                      fg)
