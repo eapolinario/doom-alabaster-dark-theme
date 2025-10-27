@@ -129,7 +129,7 @@ There are three styles to select from:
    (link                                  :foreground highlight :underline t)
    (cursor                                :background light-yellow)
    ;;; Search highlight -> active
-   (evil-ex-lazy-highlight                :foreground "#000000" :background yellow-highlight)
+   (evil-ex-lazy-highlight                :foreground "#FFDEAD" :background "#1E90FF")
    (evil-ex-search                        :foreground "#000000" :background light-yellow)
    (lazy-highlight                        :foreground "#000000" :background yellow-highlight)
    ;;;; vertico family
