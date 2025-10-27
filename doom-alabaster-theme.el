@@ -1,10 +1,11 @@
-;;; doom-alabaster-theme.el --- A light theme with little syntax highlighting -*- lexical-binding: t; no-byte-compile: t -*-
-;; Copyright (C) 2022 Alexander Graul
+;;; doom-alabaster-theme.el --- A dark theme with little syntax highlighting -*- lexical-binding: t; no-byte-compile: t -*-
+;; Copyright (C) 2025 Eduardo Apolinario
 ;;
-;; Author: Alexander Graul <mail@agraul.de>
-;; Maintainer: Alexander Graul <mail@agraul.de>
+;; Author: Eduardo Apolinario <curupa@gmail.com>
+;; Maintainer: Eduardo Apolinario <curupa@gmail.com>
 ;; Version: 0.1
 ;; Keywords: themes faces
+;; Homepage: https://github.com/eapolinario/doom-alabaster-dark-theme
 ;; Homepage: https://github.com/agraul/doom-alabaster-theme
 ;; Homepage: https://github.com/tonsky/sublime-scheme-alabaster
 ;; Package-Requires: ((emacs "25.1") (doom-themes "2.3.0"))
@@ -13,7 +14,7 @@
 ;;
 ;;; Commentary:
 ;;
-;; Doom Alabaster is a port of tonsky's Alabaster theme
+;; Doom Alabaster Dark is a port of tonsky's Alabaster theme based off of https://github.com/agraul/doom-alabaster-theme
 ;;
 ;;; Code:
 (require 'doom-themes)
@@ -49,39 +50,39 @@ There are three styles to select from:
 3. nil: no comment highlighting."
   :group 'doom-alabaster-theme
   :type '(choice (const :tag "Original" original)
-                 (const :tag "faint" faint)
-                 (const :tag "nil" nil))
+          (const :tag "faint" faint)
+          (const :tag "nil" nil))
   :set #'doom-alabaster--setopt)
 
 (def-doom-theme doom-alabaster
-    "A light theme with little highlighting"
+    "A dark theme with little highlighting"
 
 ;;;; Colors
   ;; name        default     256         16
-  ((bg           '("#F7F7F7" "#F7F7F7"   "white"))
-   (base0        '("#F0F0F0" "F0F0F0"    "white"))
-   (base1        '("#E0E0E0" "#E0E0E0"   "brightblack"))
-   (base2        '("#DDDDDD" "#DDDDDD"   "brightblack"))
-   (base3        '("#777777" "#777777"   "brightblack"))
-   (base4        '("#424242" "#424242"   "brightblack"))
-   (base5        '("#000000" "#000000"   "black"))
-   (base6        '("#000000" "#000000"   "black"))
-   (base7        '("#000000" "#000000"   "black"))
-   (base8        '("#000000" "#000000"   "black"))
-   (fg           '("#000000" "#000000"   "black"))
-   (fg-alt       '("#474747" "#474747"   "black"))
+  ((bg           '("#0E1415" "#0E1415"   "black"))
+   (base0        '("#121A1B" "#121A1B"    "black"))
+   (base1        '("#182022" "#182022"   "brightblack"))
+   (base2        '("#293334" "#293334"   "brightblack"))
+   (base3        '("#708B8D" "#708B8D"   "brightblack"))
+   (base4        '("#8A9798" "#8A9798"   "brightblack"))
+   (base5        '("#A3ADAE" "#A3ADAE"   "brightblack"))
+   (base6        '("#B9C1C2" "#B9C1C2"   "brightblack"))
+   (base7        '("#D1D6D6" "#D1D6D6"   "white"))
+   (base8        '("#ECEEEE" "#ECEEEE"   "white"))
+   (fg           '("#CECECE" "#CECECE"   "white"))
+   (fg-alt       '("#AEB4B4" "#AEB4B4"   "brightblack"))
    (bg-alt       base0)
 
    (grey       base3)
 
-   (red          '("#AA3731" "#AA3731"   "red"))
-   (green        '("#448C27" "#448C27"   "green"))
-   (yellow       '("#CB9000" "#CB9000"   "yellow"))
-   (dark-blue    '("#325CC0" "#325CC0"   "blue"))
-   (magenta      '("#7A3E9D" "#7A3E9D"   "magenta"))
+   (red          '("#CC3333" "#CC3333"   "red"))
+   (green        '("#95CB82" "#95CB82"   "green"))
+   (yellow       '("#E78A2B" "#E78A2B"   "yellow"))
+   (dark-blue    '("#71ADE7" "#71ADE7"   "blue"))
+   (magenta      '("#CC8BC9" "#CC8BC9"   "magenta"))
    (dark-cyan    '("#0083B2" "#0083B2"   "cyan"))
-   (light-yellow '("#FFBC5D" "#FFBC5D"   "brightyellow"))
-   (orange       '("#F05050" "#F05050"   "brightred"))
+   (light-yellow '("#CD974B" "#CD974B"   "brightyellow"))
+   (orange       '("#CD974B" "#CD974B"   "brightred"))
    (teal         '("#60CB00" "#60CB00"   "brightgreen"))
    (violet       '("#E64CE6" "#E64CE6"   "brightmagenta"))
    (cyan         '("#00AACB" "#00AACB"   "brightcyan"))
@@ -91,18 +92,18 @@ There are three styles to select from:
    (yellow-highlight (doom-blend light-yellow bg 0.2))
    (bg-dark base2)
 ;;;; face categories -- required for all themes
-   (highlight      blue)
+   (highlight      light-yellow)
    (vertical-bar   base2)
    (selection      dark-blue)
    (builtin        fg)
    (comments       (cond
                     ((or (eq doom-alabaster-comment-style 'faint)
                          doom-alabaster-fainter-comments)
-                     (doom-darken dark-blue 0.25))
+                     (doom-darken "#DFDF8E" 0.4))
                     ((eq doom-alabaster-comment-style nil)
                      fg)
                     ;; 'original == default
-                    (t red)))
+                    (t "#DFDF8E")))
    (doc-comments   green)
    (constants      magenta)
    (functions      dark-blue)
@@ -117,7 +118,7 @@ There are three styles to select from:
    (error          red)
    (warning        red)
    (success        green)
-   (vc-modified    light-yellow)
+   (vc-modified    yellow)
    (vc-added       green)
    (vc-deleted     red)
 
@@ -133,12 +134,14 @@ There are three styles to select from:
    (mode-line-inactive                    :foreground modeline-fg
                                           :background modeline-bg-inactive)
    (secondary-selection                   :background bg-dark)
+   (hl-line                               :background (doom-blend "#FFFFFF" bg 0.06))
    ;; drop bold from link
    (link                                  :foreground highlight :underline t)
-   ;;; Search highlight -> light yellow
-   (evil-ex-lazy-highlight                :background yellow-highlight)
-   (evil-ex-search                        :background light-yellow)
-   (lazy-highlight                        :background yellow-highlight)
+   (cursor                                :background light-yellow)
+   ;;; Search highlight -> active
+   (evil-ex-lazy-highlight                :foreground "#000000" :background yellow-highlight)
+   (evil-ex-search                        :foreground "#000000" :background light-yellow)
+   (lazy-highlight                        :foreground "#000000" :background yellow-highlight)
    ;;;; vertico family
    (marginalia-size                       :foreground magenta)
    ;;;; all-the-icons
