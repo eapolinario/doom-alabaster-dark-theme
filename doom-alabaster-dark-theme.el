@@ -54,7 +54,7 @@ There are three styles to select from:
           (const :tag "nil" nil))
   :set #'doom-alabaster-dark--setopt)
 
-(def-doom-theme doom-alabaster
+(def-doom-theme doom-alabaster-dark
     "A dark theme with little highlighting"
 
 ;;;; Colors
