@@ -1,6 +1,6 @@
 #+TITLE: Doom Alabaster
 
-Port of [[https://github.com/tonsky/sublime-scheme-alabaster][Alabaster]] to [[https://doomemacs.org][Doom Emacs]].
+Port of [[https://github.com/tonsky/sublime-scheme-alabaster][Alabaster Dark]] to [[https://doomemacs.org][Doom Emacs]].
 
 * Alabaster's Motivation
 Most color schemes highlight everything they can, ending up looking like a
@@ -53,18 +53,18 @@ These screenshots use [[https://emacs-tree-sitter.github.io/syntax-highlighting/
 [[https://github.com/agraul/doom-alabaster-theme/blob/screenshots/screenshot3.png?raw=true]]
 
 * Installation
-1. Add =doom-alabaster-theme= to =$DOOMDIR/packages.el=
+1. Add =doom-alabaster-dark-theme= to =$DOOMDIR/packages.el=
    #+begin_src elisp
 ;; $DOOMDIR/packages.el
-(package! doom-alabaster-theme :recipe (:host github :repo "agraul/doom-alabaster-theme"))
+(package! doom-alabaster-theme :recipe (:host github :repo "eapolinario/doom-alabaster-dark-theme"))
    #+end_src
 2. Run ~doom sync~
-3. Set =doom-theme= to ='doom-alabaster=
+3. Set =doom-theme= to ='doom-alabaster-dark=
    #+begin_src elisp
 ;; $DOOMDIR/config.el
-(setq doom-theme 'doom-alabaster)
+(setq doom-theme 'doom-alabaster-dark)
    #+end_src
 4. Restart Emacs and enjoy
 * Credits
-Originally developed by [[https://github.com/tonsky][Niki Tonsky]] for Sublime Scheme and VSCode. Ported to
-Doom Emacs by [[https://github.com/agraul][Alex Graul]].
+Originally developed by [[https://github.com/tonsky][Niki Tonsky]] for Sublime Scheme and VSCode.
+[[https://github.com/agraul][Alex Graul]] ported the light theme to Doom Emacs and [[https://github.com/eapolinario][Eduardo Apolinario]] ported the dark theme to Doom Emacs.
