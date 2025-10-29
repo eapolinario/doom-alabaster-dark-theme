@@ -257,6 +257,8 @@ There are three styles to select from:
    (mu4e-trashed-face                     :foreground fg-alt :strike-through t)
    ;;; nerd-icons
    (nerd-icons-purple                     :foreground magenta)
+   ;;;; python
+   (doom-alabaster-dark-python-async-face :foreground dark-blue :weight 'bold)
    ;;;; org
    (org-agenda-date                       :foreground (doom-darken dark-blue 0.2))
    (org-agenda-date-today                 :foreground dark-blue)
@@ -337,6 +339,63 @@ There are three styles to select from:
                                           :box '(:line-width -1))
    ;;;; window-divider <built-in>
    (window-divider                        :foreground base3 :background base3)))
+
+(defconst doom-alabaster-dark--python-async-keywords
+  '(("\\_<async\\_>" 0 'doom-alabaster-dark-python-async-face prepend))
+  "Font-lock keywords used to highlight `async' in Python buffers.")
+
+(defvar python-mode-hook)
+(defvar python-ts-mode-hook nil)
+
+(defun doom-alabaster-dark--python-buffer-setup ()
+  "Activate Doom Alabaster Dark highlighting for `async`."
+  (font-lock-remove-keywords nil doom-alabaster-dark--python-async-keywords)
+  (font-lock-add-keywords nil doom-alabaster-dark--python-async-keywords 'append)
+  (when font-lock-mode
+    (font-lock-flush)
+    (font-lock-ensure)))
+
+(defun doom-alabaster-dark--python-buffer-reset ()
+  "Remove Doom Alabaster Dark highlighting for `async`."
+  (font-lock-remove-keywords nil doom-alabaster-dark--python-async-keywords)
+  (when font-lock-mode
+    (font-lock-flush)
+    (font-lock-ensure)))
+
+(defun doom-alabaster-dark--python-iterate-buffers (fn)
+  "Run FN in every live Python buffer."
+  (dolist (buffer (buffer-list))
+    (when (buffer-live-p buffer)
+      (with-current-buffer buffer
+        (when (derived-mode-p 'python-mode 'python-ts-mode)
+          (funcall fn))))))
+
+(defun doom-alabaster-dark--python-theme-enable (theme)
+  "Enable Python async highlighting when THEME is activated."
+  (when (memq theme '(doom-alabaster-dark doom-alabaster))
+    (add-hook 'python-mode-hook #'doom-alabaster-dark--python-buffer-setup)
+    (when (boundp 'python-ts-mode-hook)
+      (add-hook 'python-ts-mode-hook #'doom-alabaster-dark--python-buffer-setup))
+    (doom-alabaster-dark--python-iterate-buffers
+     #'doom-alabaster-dark--python-buffer-setup)))
+
+(defun doom-alabaster-dark--python-theme-disable (theme)
+  "Disable Python async highlighting when THEME is turned off."
+  (when (memq theme '(doom-alabaster-dark doom-alabaster))
+    (remove-hook 'python-mode-hook #'doom-alabaster-dark--python-buffer-setup)
+    (when (boundp 'python-ts-mode-hook)
+      (remove-hook 'python-ts-mode-hook #'doom-alabaster-dark--python-buffer-setup))
+    (doom-alabaster-dark--python-iterate-buffers
+     #'doom-alabaster-dark--python-buffer-reset)))
+
+(add-hook 'enable-theme-functions #'doom-alabaster-dark--python-theme-enable)
+(add-hook 'disable-theme-functions #'doom-alabaster-dark--python-theme-disable)
+
+(when (memq 'doom-alabaster-dark custom-enabled-themes)
+  (doom-alabaster-dark--python-theme-enable 'doom-alabaster-dark))
+(when (and (memq 'doom-alabaster custom-enabled-themes)
+           (not (memq 'doom-alabaster-dark custom-enabled-themes)))
+  (doom-alabaster-dark--python-theme-enable 'doom-alabaster))
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
